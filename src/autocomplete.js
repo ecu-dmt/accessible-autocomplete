@@ -51,10 +51,7 @@ export default class Autocomplete extends Component {
     tNoResults: () => 'No results found',
     tAssistiveHint: () => 'When autocomplete results are available use up and down arrows to review and enter to select.  Touch device users, explore by touch or with swipe gestures.',
     dropdownArrow: DropdownArrowDown,
-    menuAttributes: {},
-    inputClasses: null,
-    hintClasses: null,
-    menuClasses: null
+    experimentalAllowAnyInput: false
   }
 
   elementReferences = {}
