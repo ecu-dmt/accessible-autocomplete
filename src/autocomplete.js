@@ -67,7 +67,7 @@ export default class Autocomplete extends Component {
       focused: null,
       hovered: null,
       menuOpen: false,
-      options: this.isQueryAnOption(props.defaultValue, [props.defaultValue]) ? [props.defaultValue] : [],
+      options: props.defaultValue ? [props.defaultValue] : [],
       query: props.defaultValue,
       validChoiceMade: false,
       selected: null,
