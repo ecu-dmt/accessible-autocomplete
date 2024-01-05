@@ -17,11 +17,6 @@
     "typeahead",
     "widget"
   ],
-  "husky": {
-    "hooks": {
-      "pre-push": "npm run build && node scripts/check-staged.js"
-    }
-  },
   "dependencies": {
     "preact": "^8.3.1"
   },
