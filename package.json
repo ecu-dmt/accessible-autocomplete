@@ -1,8 +1,6 @@
 {
   "name": "@ecu-dmt/accessible-autocomplete",
   "version": "1.0.4",
-  "main": "dist/accessible-autocomplete.min.js",
-  "style": "dist/accessible-autocomplete.min.css",
   "description": "An autocomplete component, built to be accessible. Forked from alphagov/accessible-autocomplete",
   "repository": {
     "type": "git",
