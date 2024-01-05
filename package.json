@@ -19,18 +19,13 @@
     "typeahead",
     "widget"
   ],
-  "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --progress",
-    "dev": "cross-env NODE_ENV=development webpack serve",
-    "karma:dev": "cross-env NODE_ENV=test karma start test/karma.config.js",
-    "karma": "npm run karma:dev -- --single-run",
-    "prepare": "node -e \"try { (await import('husky')).default() } catch (e) { if (e.code !== 'ERR_MODULE_NOT_FOUND') throw e }\" --input-type module",
-    "preversion": "npm test",
-    "standard": "standard",
-    "pretest": "npm run build",
-    "test": "run-p standard karma wdio",
-    "version": "git add -A dist",
-    "wdio": "cross-env NODE_ENV=test wdio test/wdio.config.js"
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run build && node scripts/check-staged.js"
+    }
+  },
+  "dependencies": {
+    "preact": "^8.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.23.9",
