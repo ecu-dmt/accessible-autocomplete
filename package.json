@@ -1,11 +1,14 @@
 {
-  "name": "accessible-autocomplete",
-  "version": "2.0.3",
+  "name": "@ecu-dmt/accessible-autocomplete",
+  "version": "1.0.4",
   "main": "dist/accessible-autocomplete.min.js",
   "style": "dist/accessible-autocomplete.min.css",
-  "description": "An autocomplete component, built to be accessible.",
-  "repository": "alphagov/accessible-autocomplete",
-  "author": "Government Digital Service (https://www.gov.uk/government/organisations/government-digital-service)",
+  "description": "An autocomplete component, built to be accessible. Forked from alphagov/accessible-autocomplete",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ecu-dmt/accessible-autocomplete.git"
+  },
+  "author": "Edith Cowan University DMEAT (https://www.ecu.edu.au/) and Government Digital Service (https://www.gov.uk/government/organisations/government-digital-service)",
   "license": "MIT",
   "keywords": [
     "a11y",

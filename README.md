@@ -1,4 +1,4 @@
-# Accessible autocomplete
+# Accessible autocomplete, forked from @alphagov/accessible-autocomplete
 
 ---
 
@@ -31,7 +31,7 @@ You can still raise issues or pull requests if you want to. As soon as we’re a
 Install it by running:
 
 ```bash
-npm install --save accessible-autocomplete
+npm install --save @ecu-dmt/accessible-autocomplete
 ```
 
 The `accessibleAutocomplete` function will render an autocomplete `<input>` and its accompanying suggestions and `aria-live` region. Your page should provide a `<label>` and a container element:
