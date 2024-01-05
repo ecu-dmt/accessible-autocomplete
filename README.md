@@ -1,4 +1,4 @@
-# Accessible autocomplete
+# Accessible autocomplete, forked from @alphagov/accessible-autocomplete
 
 The accessible autocomplete is a component that helps users choose answers from a list you provide. You can also use it to make the answers you get from users more consistent.
 
@@ -37,7 +37,7 @@ The GOV.UK Design System team maintains the accessible autocomplete as a standal
 Install it by running:
 
 ```bash
-npm install --save accessible-autocomplete
+npm install --save @ecu-dmt/accessible-autocomplete
 ```
 
 The `accessibleAutocomplete` function will render an autocomplete `<input>` and its accompanying suggestions and `aria-live` region. Your page should provide a `<label>` and a container element:
