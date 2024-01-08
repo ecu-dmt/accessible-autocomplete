@@ -17,6 +17,25 @@
     "typeahead",
     "widget"
   ],
+  "scripts": {
+    "build:css": "csso src/autocomplete.css -o dist/accessible-autocomplete.min.css",
+    "build:js": "cross-env NODE_ENV=production webpack --progress --display-modules",
+    "build": "run-s 'build:js' 'build:css'",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --progress",
+    "karma:dev": "cross-env NODE_ENV=test karma start test/karma.config.js",
+    "karma": "npm run karma:dev -- --single-run",
+    "preversion": "npm test",
+    "standard": "standard",
+    "test": "run-p standard karma wdio",
+    "version": "npm run build && git add -A dist",
+    "wdio:test": "cross-env NODE_ENV=test wdio test/wdio.config.js",
+    "wdio": "npm run build wdio:test && git checkout dist/"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run build && node scripts/check-staged.js"
+    }
+  },
   "dependencies": {
     "preact": "^8.3.1"
   },
@@ -75,6 +94,16 @@
       "optional": true
     }
   },
+  "browserslist": [
+    ">0.1%",
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Edge versions",
+    "last 2 Samsung versions",
+    "Safari >= 9",
+    "ie 8-11",
+    "iOS >= 9"
+  ],
   "standard": {
     "ignore": [
       "dist"
