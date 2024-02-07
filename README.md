@@ -35,3 +35,22 @@ handleEnter (event) {
   }
 }
 ```
+## @ecudmt
+```
+handleEnter (event) {
+  if (this.state.menuOpen) {
+    // If not using autoselect and not using enhanceSelectElement, check if the current
+    // value can be submitted without selecting an option from the open menu.
+    const allowAnyInput = !this.props.autoselect && !this.props.selectElement && this.props.experimentalAllowAnyInput
+    const hasSelectedOption = this.state.selected >= 0
+
+    if (!allowAnyInput || hasSelectedOption) {
+      event.preventDefault()
+    }
+    
+    if (hasSelectedOption) {
+      this.handleOptionClick(event, this.state.selected)
+    }
+  }
+}
+```
