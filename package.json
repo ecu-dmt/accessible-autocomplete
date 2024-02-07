@@ -10,6 +10,8 @@
   },
   "author": "Edith Cowan University DMEAT (https://www.ecu.edu.au/) and Government Digital Service (https://www.gov.uk/government/organisations/government-digital-service)",
   "version": "2.0.4",
+  "main": "dist/accessible-autocomplete.min.js",
+  "style": "dist/accessible-autocomplete.min.css",
   "license": "MIT",
   "keywords": [
     "a11y",
