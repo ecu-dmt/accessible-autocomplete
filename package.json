@@ -1,12 +1,12 @@
 {
   "name": "@ecu-dmt/accessible-autocomplete",
-  "version": "1.0.4",
   "description": "An autocomplete component, built to be accessible. Forked from alphagov/accessible-autocomplete",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ecu-dmt/accessible-autocomplete.git"
   },
   "author": "Edith Cowan University DMEAT (https://www.ecu.edu.au/) and Government Digital Service (https://www.gov.uk/government/organisations/government-digital-service)",
+  "version": "2.0.4",
   "license": "MIT",
   "keywords": [
     "a11y",
@@ -18,26 +18,17 @@
     "widget"
   ],
   "scripts": {
-    "build:css": "csso src/autocomplete.css -o dist/accessible-autocomplete.min.css",
-    "build:js": "cross-env NODE_ENV=production webpack --progress --display-modules",
-    "build": "run-s 'build:js' 'build:css'",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --progress",
+    "build": "cross-env NODE_ENV=production webpack --progress",
+    "dev": "cross-env NODE_ENV=development webpack serve",
     "karma:dev": "cross-env NODE_ENV=test karma start test/karma.config.js",
     "karma": "npm run karma:dev -- --single-run",
+    "prepare": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\"",
     "preversion": "npm test",
     "standard": "standard",
+    "pretest": "npm run build",
     "test": "run-p standard karma wdio",
-    "version": "npm run build && git add -A dist",
-    "wdio:test": "cross-env NODE_ENV=test wdio test/wdio.config.js",
-    "wdio": "npm run build wdio:test && git checkout dist/"
-  },
-  "husky": {
-    "hooks": {
-      "pre-push": "npm run build && node scripts/check-staged.js"
-    }
-  },
-  "dependencies": {
-    "preact": "^8.3.1"
+    "version": "git add -A dist",
+    "wdio": "cross-env NODE_ENV=test wdio test/wdio.config.js"
   },
   "devDependencies": {
     "@babel/core": "^7.23.9",
@@ -94,16 +85,6 @@
       "optional": true
     }
   },
-  "browserslist": [
-    ">0.1%",
-    "last 2 Chrome versions",
-    "last 2 Firefox versions",
-    "last 2 Edge versions",
-    "last 2 Samsung versions",
-    "Safari >= 9",
-    "ie 8-11",
-    "iOS >= 9"
-  ],
   "standard": {
     "ignore": [
       "dist"
