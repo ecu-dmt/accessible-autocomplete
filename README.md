@@ -12,4 +12,4 @@ handleEnter (event) {
    if (hasSelectedOption) { this.handleOptionClick(event, this.state.selected) }
   }
 }
-``` 
+```
