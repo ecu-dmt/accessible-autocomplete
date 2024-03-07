@@ -51,9 +51,11 @@ export default class Autocomplete extends Component {
     tNoResults: () => 'No results found',
     tAssistiveHint: () => 'When autocomplete results are available use up and down arrows to review and enter to select.  Touch device users, explore by touch or with swipe gestures.',
     dropdownArrow: DropdownArrowDown,
+    experimentalAllowAnyInput: false,
     menuAttributes: {},
     inputClasses: null,
-    hintClasses: null
+    hintClasses: null,
+    menuClasses: null
   }
 
   elementReferences = {}
@@ -430,7 +432,8 @@ export default class Autocomplete extends Component {
       dropdownArrow: dropdownArrowFactory,
       menuAttributes,
       inputClasses,
-      hintClasses
+      hintClasses,
+      menuClasses
     } = this.props
     const { focused, hovered, menuOpen, options, query, selected, ariaHint, validChoiceMade } = this.state
     const autoselect = this.hasAutoselect()
@@ -493,6 +496,40 @@ export default class Autocomplete extends Component {
       inputClassList.push(inputClasses)
     }
 
+    const menuClassName = `${cssNamespace}__menu`
+    const menuModifierDisplayMenu = `${menuClassName}--${displayMenu}`
+    const menuIsVisible = menuOpen || showNoOptionsFound
+    const menuModifierVisibility = `${menuClassName}--${(menuIsVisible) ? 'visible' : 'hidden'}`
+
+    const menuClassList = [
+      menuClassName,
+      menuModifierDisplayMenu,
+      menuModifierVisibility
+    ]
+
+    if (menuClasses) {
+      menuClassList.push(menuClasses)
+    }
+
+    if (menuAttributes?.class || menuAttributes?.className) {
+      menuClassList.push(menuAttributes?.class || menuAttributes?.className)
+    }
+
+    const computedMenuAttributes = {
+      // Copy the attributes passed as props
+      ...menuAttributes,
+      // And add the values computed for the autocomplete
+      id: `${id}__listbox`,
+      role: 'listbox',
+      className: menuClassList.join(' '),
+      onMouseLeave: this.handleListMouseLeave
+    }
+
+    // Preact would override our computed `className`
+    // with the `class` from the `menuAttributes` so
+    // we need to clean it up from the computed attributes
+    delete computedMenuAttributes.class
+
     return (
       <div className={wrapperClassName} onKeyDown={this.handleKeyDown}>
         <Status
@@ -535,13 +572,7 @@ export default class Autocomplete extends Component {
 
         {dropdownArrow}
 
-        <ul
-          className={`${menuClassName} ${menuModifierDisplayMenu} ${menuModifierVisibility}`}
-          onMouseLeave={(event) => this.handleListMouseLeave(event)}
-          id={`${id}__listbox`}
-          role='listbox'
-          {...menuAttributes}
-        >
+        <ul {...computedMenuAttributes}>
           {options.map((option, index) => {
             const showFocused = focused === -1 ? selected === index : focused === index
             const optionModifierFocused = showFocused && hovered === null ? ` ${optionClassName}--focused` : ''
