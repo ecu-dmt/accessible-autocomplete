@@ -3,7 +3,7 @@ name: Push to GitHub Packages
 on:
   push:
     branches:
-      - sync-with-alphagov
+      - main
 
 jobs:
   build:
