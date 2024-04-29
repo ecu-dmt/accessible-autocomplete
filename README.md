@@ -8,9 +8,11 @@ Adapts code in `src/autocomplete.js` so that search submits on keyboard press.
 ```
 handleEnter (event) {
   if (this.state.menuOpen) {
-   event.preventDefault()
-   const hasSelectedOption = this.state.selected >= 0
-   if (hasSelectedOption) { this.handleOptionClick(event, this.state.selected) }
+    event.preventDefault()
+    const hasSelectedOption = this.state.selected >= 0
+    if (hasSelectedOption) {
+      this.handleOptionClick(event, this.state.selected)
+    }
   }
 }
 ```
