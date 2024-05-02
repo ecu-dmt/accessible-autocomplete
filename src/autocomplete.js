@@ -368,7 +368,6 @@ export default class Autocomplete extends Component {
       if (!allowAnyInput || hasSelectedOption) {
         event.preventDefault()
       }
-      
       if (hasSelectedOption) {
         this.handleOptionClick(event, this.state.selected)
       }
