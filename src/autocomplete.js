@@ -464,7 +464,7 @@ export default class Autocomplete extends Component {
       'aria-describedby': ariaHint ? assistiveHintID : null,
       'aria-expanded': menuOpen ? 'true' : 'false',
       'aria-activedescendant': optionFocused ? `${id}__option--${focused}` : null,
-      'aria-owns': `${id}__listbox`,
+      'aria-controls': `${id}__listbox`,
       'aria-autocomplete': (this.hasAutoselect()) ? 'both' : 'list'
     }
 
@@ -515,6 +515,8 @@ export default class Autocomplete extends Component {
     }
 
     const computedMenuAttributes = {
+      // set aria-labelledby first so that users can override it with menuAttributes
+      'aria-labelledby': id,
       // Copy the attributes passed as props
       ...menuAttributes,
       // And add the values computed for the autocomplete
@@ -603,7 +605,7 @@ export default class Autocomplete extends Component {
           })}
 
           {showNoOptionsFound && (
-            <li className={`${optionClassName} ${optionClassName}--no-results`}>{tNoResults()}</li>
+            <li className={`${optionClassName} ${optionClassName}--no-results`} role='option' aria-disabled='true'>{tNoResults()}</li>
           )}
         </ul>
 
