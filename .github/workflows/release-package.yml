@@ -3,7 +3,7 @@ name: Push to GitHub Packages
 on:
   push:
     branches:
-      - sync-v3.0.1
+      - main
 
 jobs:
   build:
